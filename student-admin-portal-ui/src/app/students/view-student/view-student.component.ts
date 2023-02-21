@@ -79,8 +79,23 @@ export class ViewStudentComponent {
       console.log(errorResponse);
     }
     );
+  }
 
-    //Call student service to update student
+  onDelete(): void {
+    this.studentService.deleteStudent(this.student.id)
+    .subscribe(
+    (successReponse) => {
+      console.log(successReponse);
+      //Show a notification
+      this.snackbar.open('Student successfully deleted!', undefined, {
+        duration: 2000
+      });
+    },
+    (errorResponse) => {
+      //Log it
+      console.log(errorResponse);
+    }
+    );
   }
 
 }
