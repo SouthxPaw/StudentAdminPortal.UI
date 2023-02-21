@@ -35,6 +35,7 @@ export class ViewStudentComponent {
   genderList: Gender [] = [];
   isNewStudent = false;
   header = '';
+  displayProfileImageUrl = '';
 
   constructor(private readonly studentService: StudentService,
     private readonly route: ActivatedRoute,
@@ -53,8 +54,7 @@ export class ViewStudentComponent {
       if (this.studentId.toLowerCase() === 'Add'.toLowerCase()){
         this.isNewStudent = true;
         this.header = 'Add New Student';
-
-
+        this.setImage();
       }
       else {
         this.isNewStudent = false;
@@ -64,6 +64,7 @@ export class ViewStudentComponent {
         .subscribe(
           (successResponse) => {
             this.student = successResponse;
+            this.setImage();
           },
         );
 
@@ -71,9 +72,12 @@ export class ViewStudentComponent {
         .subscribe(
           (successResponse) => {
             this.genderList = successResponse;
+          },
+          (errorResponse) => {
+            console.log(errorResponse);
+            this.setImage();
           }
         );
-
       }
     }
 
@@ -136,6 +140,37 @@ export class ViewStudentComponent {
         console.log(errorResponse);
       }
     )
+  }
+
+  setImage(): void {
+    if (this.student.profileImageUrl){
+      // Fetch the image url
+      this.displayProfileImageUrl = this.studentService.getImagePath(this.student.profileImageUrl);
+    }
+    else {
+      //Display default
+      this.displayProfileImageUrl = '/assets/user.png';
+    }
+  }
+
+  uploadImage(event: any): void {
+    if (this.studentId){
+      const file: File = event.target.files[0];
+      this.studentService.uploadImage(this.student.id, file)
+      .subscribe(
+        (successResponse) => {
+          this.student.profileImageUrl = successResponse;
+          this.setImage();
+
+          this.snackbar.open('Profile image updated successfully!', undefined, {
+            duration: 2000
+          });
+        },
+        (errorResponse) => {
+          console.log(errorResponse);
+        }
+      );
+    }
   }
 
 }
