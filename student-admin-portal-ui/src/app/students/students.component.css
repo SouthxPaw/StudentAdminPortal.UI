@@ -1,18 +1,18 @@
 table{
-  width: 100%;
+  width: 100% !important;
 }
 
 .search-input{
-  outline: none;
-  border: 1px solid #CCC;
-  padding: 8px 10px;
-  border-radius: 3px;
+  outline: none !important;
+  border: 1px solid #CCC !important;
+  padding: 8px 10px !important;
+  border-radius: 3px !important;
 }
 
 .search-input:active{
-  border: 1px solid #BBB;
+  border: 1px solid #BBB !important;
 }
 
 .search-input:focus{
-  border: 1px solid #AAA;
+  border: 1px solid #AAA !important;
 }
