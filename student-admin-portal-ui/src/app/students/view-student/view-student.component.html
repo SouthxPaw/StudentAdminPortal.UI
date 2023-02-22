@@ -1,10 +1,10 @@
 <div class="page-header">
-  <div class="container">
+  <div class="container ml-1">
     <h1>{{header}}</h1>
   </div>
 </div>
 
-<div class="container">
+<div class="container fields-position ml-1">
   <div class="row top-row">
     <div class="col-xs-12 row end-xs">
       <a routerLink="/students" color="primary" mat-raised-button>
@@ -95,8 +95,8 @@
         <div class="row">
           <div class="col-xs-12">
             <div class="row between-xs" *ngIf="!isNewStudent">
-              <button mat-raised-button color="primary" (click)="onUpdate()">Save</button>
-              <button mat-raised-button color="warning" (click)="onDelete()">Delete</button>
+              <button style="margin-right:1em;" mat-raised-button color="primary" (click)="onUpdate()">Save</button>
+              <button mat-raised-button color="warn" (click)="onDelete()">Delete</button>
             </div>
             <div class="row between-xs" *ngIf="isNewStudent">
               <button mat-raised-button color="primary" (click)="onAdd()">Add</button>
@@ -105,17 +105,20 @@
         </div>
       </form>
     </div>
-    <div class="col-xs-6">
-      <div class="row center-xs">
-        <div class="image-container">
-          <img [src]="displayProfileImageUrl" alt="Profile Image">
-        </div>
+  </div>
+</div>
+
+<div class="container image-position">
+  <div class="col-xs-6">
+    <div class="row center-xs">
+      <div class="image-container">
+        <img [src]="displayProfileImageUrl" alt="Profile Image">
       </div>
-      <div class="row">
-        <div class="col-xs-12 row center-xs mt-1" *ngIf="!isNewStudent">
-          <input hidden type="file" #imageUpload (change)="uploadImage($event)">
-          <button mat-raised-button color="primary" (click)="imageUpload.click()">Change Image</button>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12 row center-xs mt-1 button-position" *ngIf="!isNewStudent">
+        <input hidden type="file" #imageUpload (change)="uploadImage($event)">
+        <button mat-raised-button color="primary" (click)="imageUpload.click()">Change Image</button>
       </div>
     </div>
   </div>

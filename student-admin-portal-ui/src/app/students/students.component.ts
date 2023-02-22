@@ -44,6 +44,26 @@ export class StudentsComponent {
   }
 
   filterStudents(){
-    this.dataSource.filter = this.filterString.trim().toLowerCase();
+    const displayedGenders: string[] = ['male', 'female', 'other'];
+    var filterStringTrimmed = this.filterString.trim().toLowerCase();
+
+    if (filterStringTrimmed.length > 2)
+    {
+      switch(displayedGenders.includes(filterStringTrimmed))
+      {
+        case filterStringTrimmed.includes('female'):
+          filterStringTrimmed = '54182038-4abf-42ff-b05a-0f4c414cbc8b';
+          break;
+        case filterStringTrimmed.includes('male') && !filterStringTrimmed.includes('fe'):
+          filterStringTrimmed = '6f08fab6-c62e-4306-9d77-c82c9c6a23ac';
+          break;
+        case filterStringTrimmed.includes('other'):
+          filterStringTrimmed = '177a07f2-3493-49a4-a720-ac96c51c7c43'
+          break;
+        default:
+          break;
+      }
+    }
+    this.dataSource.filter = filterStringTrimmed;
   }
 }

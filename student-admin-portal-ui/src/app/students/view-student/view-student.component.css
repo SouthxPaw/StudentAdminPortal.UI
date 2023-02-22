@@ -21,3 +21,18 @@
 .image-container img{
   width: 200px;
 }
+
+.image-position{
+  display: inline-block;
+  position: absolute;
+}
+
+.fields-position{
+  display:inline-block;
+  margin-right: 3em;
+  width: 55%;
+}
+
+.button-position{
+  margin-left: 2em;
+}
